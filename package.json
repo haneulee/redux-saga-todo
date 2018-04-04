@@ -1,8 +1,8 @@
 {
-  "name": "todo-list",
+  "name": "redux-saga-todo",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://haneulee.github.io/redux-saga-todo/todo-list",
+  "homepage": "https://haneulee.github.io/redux-saga-todo",
   "dependencies": {
     "gh-pages": "^1.1.0",
     "react": "^16.3.1",
