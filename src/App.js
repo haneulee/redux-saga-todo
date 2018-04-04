@@ -1,18 +1,41 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 class App extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      inputVal: ""
+    };
+  }
+
+  handleClick = (e) => {
+    if (e.target.textContent === "+") {
+      this.props.add(this.state.inputVal);
+      this.setState({ inputVal: "" });
+    } else {
+      this.props.remove(e.target.getAttribute("id"));
+    }
+  }
+
+  handleChange = (e) => {
+    this.setState({ inputVal: e.target.value });
+  }
+
   render() {
     return (
-      <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div>
+        <h1>TODO LIST</h1>
+        <input onChange={this.handleChange} value={this.state.inputVal} />
+        <button onClick={this.handleClick}>+</button>
+
+        <ul>
+          {
+            this.props.todoList.map(({ text, id }, index) => (
+              <li key={index}>{text}
+                <button id={id} onClick={this.handleClick}>-</button></li>
+            ))
+          }
+        </ul>
       </div>
     );
   }
