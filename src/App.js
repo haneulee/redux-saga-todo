@@ -9,11 +9,15 @@ class App extends Component {
   }
 
   handleClick = (e) => {
-    if (e.target.textContent === "+") {
+    let textVal = e.target.textContent;
+
+    if (textVal === "+") {
       this.props.add(this.state.inputVal);
       this.setState({ inputVal: "" });
-    } else {
+    } else if (textVal === "-") {
       this.props.remove(e.target.getAttribute("id"));
+    } else {
+      this.props.remove_async(e.target.getAttribute("id"));
     }
   }
 
@@ -32,7 +36,8 @@ class App extends Component {
           {
             this.props.todoList.map(({ text, id }, index) => (
               <li key={index}>{text}
-                <button id={id} onClick={this.handleClick}>-</button></li>
+                <button id={id} onClick={this.handleClick}>-</button>
+                <button id={id} onClick={this.handleClick}>- (async)</button></li>
             ))
           }
         </ul>
